@@ -1,8 +1,9 @@
-module github.com/apache/rocketmq-clients/golang/v5
+module github.com/tianping526/rocketmq-clients/golang/v5
 
 go 1.17
 
 require (
+	github.com/apache/rocketmq-clients/golang/v5 v5.0.0-00010101000000-000000000000
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.3.0
@@ -19,17 +20,13 @@ require (
 )
 
 require (
-	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/frankban/quicktest v1.14.6 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
+	github.com/kr/pretty v0.3.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
 	google.golang.org/api v0.15.1 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
@@ -50,10 +47,6 @@ require (
 	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
-	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 )
 
-// replace(
-// 	google.golang.org/genproto => google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107
-// 	google.golang.org/grpc => google.golang.org/grpc v1.19.0
-// )
+replace github.com/apache/rocketmq-clients/golang/v5 => .
