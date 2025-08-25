@@ -22,10 +22,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/apache/rocketmq-clients/golang/v5/pkg/grpc/middleware/zaplog"
-	validator "github.com/go-playground/validator/v10"
+	"github.com/go-playground/validator/v10"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+
+	"github.com/apache/rocketmq-clients/golang/v5/pkg/grpc/middleware/zaplog"
 )
 
 var (
@@ -107,6 +108,8 @@ func (c *clientConn) Close() error {
 
 func (c *clientConn) dialSetupOpts(dopts ...grpc.DialOption) (opts []grpc.DialOption, err error) {
 	opts = append(opts, dopts...)
+	// Set default gRPC load balancing policy to round_robin
+	opts = append(opts, grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy":"round_robin"}`))
 	if c.creds != nil {
 		opts = append(opts, grpc.WithTransportCredentials(c.creds))
 	}
@@ -125,9 +128,11 @@ func (c *clientConn) dial(target string, dopts ...grpc.DialOption) (*grpc.Client
 	opts = append(opts, c.opts.DialOptions...)
 	dctx := c.ctx
 	if c.opts.DialTimeout > 0 {
-		dctx, _ = context.WithTimeout(c.ctx, c.opts.DialTimeout)
+		var cancel context.CancelFunc
+		dctx, cancel = context.WithTimeout(c.ctx, c.opts.DialTimeout)
+		defer cancel()
 	}
-	conn, err := grpc.DialContext(dctx, target, opts...)
+	conn, err := grpc.DialContext(dctx, fmt.Sprintf("dns:///%s", target), opts...)
 	if err != nil {
 		return nil, err
 	}
