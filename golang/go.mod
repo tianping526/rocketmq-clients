@@ -1,8 +1,9 @@
-module github.com/apache/rocketmq-clients/golang/v5
+module github.com/tianping526/rocketmq-clients/golang/v5
 
 go 1.24
 
 require (
+	github.com/apache/rocketmq-clients/golang/v5 v5.1.3
 	github.com/go-playground/validator/v10 v10.26.0
 	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.6.0
@@ -30,7 +31,7 @@ require (
 	google.golang.org/api v0.230.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250422160041-2d3770c4ea7f // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250422160041-2d3770c4ea7f // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
@@ -49,10 +50,11 @@ require (
 	golang.org/x/net v0.39.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
-	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 )
 
 // replace(
 // 	google.golang.org/genproto => google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107
 // 	google.golang.org/grpc => google.golang.org/grpc v1.19.0
 // )
+
+replace github.com/apache/rocketmq-clients/golang/v5 => .
